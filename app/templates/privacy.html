@@ -1,0 +1,79 @@
+{% extends role %}
+{% load static %}
+{% block content %}
+
+ 
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+     
+      <div class="clearfix"></div>
+
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            
+            <div class="x_content">
+                <form  class="form-horizontal form-label-left" method="post" action="{%url 'Privacy' %}" onsubmit="return chh(this); ">
+                    {% csrf_token %}
+            
+                <span style="font-size: x-large; font-weight: bold;" class="section">ChangePassword</span>
+ 
+<div class="item form-group">
+<div class="item form-group">
+               <br><br><br>   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Current Password<span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="password" id="cpass" name="t1" required="required" value="" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+                  </div>
+                </div>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">New Password<span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="password" id="npass" name="t2" required="required" value="" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+                  </div>
+                </div>
+                <div class="item form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Confirm Password<span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="password" id="cnpass" name="t3" required="required" value="" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+                  </div>
+                </div>
+                
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                  <div class="col-md-6 col-md-offset-3">
+                    <button type="submit" class="btn btn-primary">Cancel</button>
+                    <button id="send" name="submit" type="submit" class="btn btn-success">Update</button>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<script> 
+    function chh(v)
+    {
+        if(v.p2.value!=v.p3.value)
+        {
+            alert("password missmatch ");
+            v.p2.value="";
+             v.p3.value="";
+              v.p2.focus();
+              return false;
+        }
+        return true;
+    }
+</script>
+
+{% endblock %}

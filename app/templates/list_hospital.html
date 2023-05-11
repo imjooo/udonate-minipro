@@ -1,0 +1,33 @@
+{% extends "adminhead.html" %}
+{% load static %}
+{% block content %}
+           
+<div class="right_col" role="main">
+<table class="table table-responsive table-striped " width="100%" style="margin-bottom:10px;">
+    <thead class="bg-primary text-white">
+    <tr class="table-dark">
+        <th style="  color:white;" >Sl.No.</th>
+        <th style="  color:white;">Name</th>
+        <th style="  color:white;" >Address</th>
+        <th style="  color:white;" >Phone Number</th>
+        <th style="  color:white;" >User Email</th>
+        <th style="  color:white;">#</th>
+
+    </tr>
+    </thead>
+    {% for data in data %}
+  
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{data.hname}}</td>
+        <td>{{data.address}}</td>
+        <td>{{data.phone}}</td>
+        <td>{{data.email}}</td>
+        <td><a href="{% url 'remove_hosp' %}?id={{data.hid}}">Remove</a></td>
+    </tr>
+    {% endfor %}
+        
+</table>
+
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+<form method="POST" action="{% url 'searchblood' %}">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-6 " id="m">
+
+              <div class="form-outline">
+                <select class="form-select form-select-sm pt-3 pb-2 pl-5 pr-5" aria-label=".form-select-sm" name="blood_grp">
+                  <option selected>Select blood group</option>
+                  <option value="A+">A+</option>
+                  <option value="A-">A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B-">B-</option>
+                  <option value="O+">O+</option>
+                  <option value="O-">O-</option>
+                  <option value="AB+">AB+</option>
+                  <option value="AB-">AB-</option>
+                </select>
+              </div>
+
+            </div>
+            <div class="col-md-6" id="m">
+
+              <div class="form-outline">
+                <select class="form-select form-select-sm pt-3 pb-2 pl-5 pr-5" aria-label=".form-select-lg" name="district">
+                  <option selected>Select District</option>
+                  <option value="Alappuzha">Alappuzha</option>
+                  <option value="Ernakulam">Ernakulam</option>
+                  <option value="Idukki">Idukki</option>
+                  <option value="Kannur">Kannur</option>
+                  <option value="Kasargod">Kasargod</option>
+                  <option value="Kollam">Kollam</option>
+                  <option value="Kottayam">Kottayam</option>
+                  <option value="Kozhikode">Kozhikode</option>
+                  <option value="Malappuram">Malappuram</option>
+                  <option value="Palakkad">Palakkad</option>
+                  <option value="Pathanamthitta">Pathanamthitta</option>
+                 <option value="Thiruvanathapuram">Thiruvanathapuram</option>
+                  <option value="Thrissur">Thrissur</option>
+                  <option value="Wayanad">Wayanad</option>
+              </select>
+              </div>
+
+            </div>
+          </div>
+          <div class="mt-5" id="s">
+            <input class="btn btn-Danger btn-lg fw-bold my-auto" type="submit" value="Search" />
+          </div>
+
+</form>

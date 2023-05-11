@@ -1,0 +1,43 @@
+{% extends "userhead.html" %}
+{% load static %}
+{% block content %}
+<div class="right_col" role="main">
+      <div class="page-title">
+        <div class="text-center">
+          <h3>Messages</h3>
+        </div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class="clearfix"></div>
+           <div class="cnt text-center">
+            <table class="table table-responsive table-striped " width="100%" style="margin-bottom:10px;">
+              <thead class="bg-primary text-white">
+              <tr class="table-dark">
+                  <th style="  color:white;" >Sl.No.</th>
+                  <th style="  color:white;">Titile</th>
+                  <th style="  color:white;" >Description</th>
+                  <th style="  color:white;" >Date</th>
+                  <th style="  color:white;" >Time</th>
+          
+              </tr>
+              </thead>
+              {% for data in data %}
+            
+              <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{data.name}}</td>
+                  <td>{{data.description}}</td>
+                  <td>{{data.date}}</td>
+                  <td>{{data.time}}</td>
+              </tr>
+              {% endfor %}
+                  
+          </table>
+           </div>
+           
+      </div>
+</div>
+
+{% endblock %}

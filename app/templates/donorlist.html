@@ -1,0 +1,44 @@
+{% extends "adminhead.html" %}
+{% load static %}
+{% block content %}
+           
+<div class="right_col" role="main">
+<table class="table table-responsive table-striped " width="100%" style="margin-bottom:10px;">
+    <thead class="bg-primary text-white">
+    <tr class="table-dark">
+        <th style="  color:white;" >Sl.No.</th>
+        <th style="  color:white;">Name</th>
+        <th style="  color:white;" >DOB</th>
+        <th style="  color:white;" >Gender</th>
+        <th style="  color:white;" >User Email</th>
+        <th style="  color:white;">User Phone</th>
+        <th style="  color:white;">User Blood Group</th>
+        <th style="  color:white;">Last Donate</th>
+        <th style="  color:white;" >District</th>
+        <th style="  color:white;" >#</th>
+
+    </tr>
+    </thead>
+    {% for d in data %}
+  
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{d.fname}} {{d.lname}}</td>
+        <td>{{d.DOB}}</td>
+        <td>{{d.gender}}</td>
+        <td>{{d.email}}</td>
+        <td>{{d.ph_no}}</td>
+        <td>{{d.blood_grp}}</td>
+        <td>{{d.last_donate}}</td>
+        <td>{{d.district}}</td> 
+        <td><a href="{% url 'remove_usr' %}?id={{d.user_id}}">Remove</a></td>
+       
+
+    </tr>
+    {% endfor %}
+        
+</table>
+
+</div>
+
+{% endblock %}

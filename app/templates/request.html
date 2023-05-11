@@ -1,0 +1,97 @@
+{% extends "donorhead.html" %}
+{% load static %}
+{% block content %}
+           
+<div class="right_col" role="main">
+<table class="table table-responsive table-striped " width="100%" style="margin-bottom:10px;">
+    <thead class="bg-primary text-white">
+    <tr class="table-dark">
+        <th style="  color:white;" >Sl.No.</th>
+        <th style="  color:white;">Name</th>
+        
+        <th style="  color:white;" >Gender</th>
+        
+        <th style="  color:white;">Email</th>
+        
+        <th style="  color:white;" >Phone</th>
+        <th style="  color:white;">Action</th>
+    </tr>
+    </thead>
+    {% for d in data %}
+  
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{d.user.fname}} {{d.user.lname}}</td>
+       
+        <td>{{d.user.gender}}</td>
+        
+        <td>{{d.user.email}}</td>
+
+        <td>{{d.user.ph_no}}</td> 
+        
+        
+        <td>
+           
+
+          <div class="btn-group">
+            <button type="button" class="btn btn-info btn-flat">Action</button>
+            <button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
+              <span class="caret"></span>
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a class="dropdown-item mt-0" data-toggle="modal" data-target="#approve-{{d.user_id}}">Accept</a></li>
+            </ul>
+          </div>
+
+
+        
+    <!-- approve -->
+    <div class="modal fade" id="approve-{{d.user_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><h3>Book Slot</h3></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h4 class="modal-title custom_align" id="Heading" style="color:#d8727a">Are You Sure ?<br>You Need to Approve This Slot</h4>
+            <br>
+            <form class="form-horizontal" method="post" name="myForm" onsubmit=""
+              action="{% url 'accepted1' %}">
+              {% csrf_token %}
+              <input type="hidden" class="form-control" value="{{d.user_id}}" name="user_id">
+            
+              <div class="box-content">
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-success">Accept</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+    <!-- reject -->
+   
+
+      <!-- approve -->
+      
+      <!-- reject -->
+     
+
+          </td>
+
+
+        
+ 
+    </tr>
+    {% endfor %}
+        
+</table>
+
+</div>
+
+{% endblock %}

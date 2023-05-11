@@ -1,0 +1,48 @@
+{% extends "index.html" %}
+{% block content %}
+<style>
+  #search{
+    background-color: rgba(240, 255, 255, 0.84);
+  }
+  #head{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+</style>
+<section class=" gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12 col-lg-9 col-xl-7">
+          <div class="card shadow-2-strong card-registration" id="search" style="border-radius: 15px";>
+            <div class="card-body p-4 p-md-5 text-center" >
+              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5" id="head">Login Form</h3>
+              <form method="post" action="{% url 'logup' %}">
+                {% csrf_token %}
+                <div class="form-group" >
+                  <label for="usrname"> Username</label>
+                  <input type="text" class="form-control" id="usrname" placeholder="Enter username" name="username">
+                </div>
+                <div class="form-group">
+                  <label for="psw"> Password</label>
+                  <input type="text" class="form-control" id="psw" placeholder="Enter password" name="password">
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" value="" checked>Remember me</label>
+                </div>
+                  <button type="submit" class="btn btn-success btn-block"></span> Login</button>
+                  <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">Cancel</button>
+                  <p>Not a member? <a href="{% url 'registration' %}">Sign Up</a></p>
+                  <p>Forgot <a href="#">Password?</a></p>
+            </div>
+          </div>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="bg-light text-white">
+<p class="text-center p-4 m-0 text-secondary">Footer Content</p>
+</div>
+</section>
+
+{% endblock %}

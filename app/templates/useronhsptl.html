@@ -1,0 +1,156 @@
+{% extends "hospitalhead.html" %}
+{% load static %}
+{% block content %}
+           
+<div class="right_col" role="main">
+<table class="table table-responsive table-striped " width="100%" style="margin-bottom:10px;">
+    <thead class="bg-primary text-white">
+    <tr class="table-dark">
+        <th style="  color:white;" >Sl.No.</th>
+        <th style="  color:white;">Name</th>
+        <th style="  color:white;" >DOB</th>
+        <th style="  color:white;" >Gender</th>
+        <th style="  color:white;" >Certificate</th>
+        <th style="  color:white;">User Phone</th>
+        <th style="  color:white;">User Blood Group</th>
+        <th style="  color:white;">Last Donate</th>
+        <th style="  color:white;" >District</th>
+        <th style="  color:white;" >Action</th>
+    </tr>
+    </thead>
+    {% for d in data %}
+  
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{d.fname}} {{d.lname}}</td>
+        <td>{{d.DOB}}</td>
+        <td>{{d.gender}}</td>
+        <td><img src="../media/{{d.medical_certificate}}" style="height:30px; width:30px;"><a href="../media/{{d.medical_certificate}}">View</a></td>
+        <td>{{d.ph_no}}</td>
+        <td>{{d.blood_grp}}</td>
+        <td>{{d.last_donate}}</td>
+        <td>{{d.district}}</td> 
+        <td><a class="btn btn-danger" data-toggle="modal" data-target="#approve-{{d.user_id}}" href="#">Approve/Reject</a>
+									</td>
+		<div class="modal fade" id="approve-{{d.user_id}}" role="dialog" >
+     <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+          <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        <h4 class="modal-title custom_align" id="Heading">Approv Donor</h4>
+      </div>
+         <div class="modal-body">
+		  <form class="form-horizontal" method="post" name="myForm" onsubmit="" action="{% url 'approveuser' %}">
+            
+        {% csrf_token %}  
+		 <input type="hidden" class="form-control"  value="{{d.user_id}}"  name="user_id"> 	 
+		 <div class="box-content">
+		<div class="col-md-10 col-md-offset-2">
+		<div class="col-md-5">
+         <div class="form-group" >
+        <label for="">Name</label>
+        <input type="text" name="user_name" class="form-control" value="{{d.fname}}{{d.lname}}" readonly required>
+		</div>
+		
+		<div class="form-group">
+         <label for="">Phone Number</label>
+        <input type="text" class="form-control" name="mobileno" value="{{d.ph_no}}" readonly>
+		</div>
+		
+		</div>
+		<div class="col-md-5">
+            
+		
+	   
+		
+		<div class="form-group">
+         <label for=>Email id</label>
+        <input type="text" class="form-control" name="mail" value="{{d.email}}" readonly>
+		</div>
+		</div>
+		</div>
+		<button  type="button" class="btn btn-success" ><a data-toggle="modal" data-target="#comp-{{d.user_id}}" href="#" style="color: #fff;"><span class="glyphicon glyphicon-ok-sign"></span> Approve</a></button>
+		
+		<button name="del" type="button" class="btn btn-danger" ><a data-toggle="modal" data-target="#reject-{{d.user_id}}" href="#"  style="color: #fff;"><span class="glyphicon glyphicon-remove" ></span> Reject</a></button>
+	
+								</div> 
+								</form>
+</div>								
+      </div>
+      </div>
+	  </div>
+	  
+	  
+	  <div class="modal fade" id="comp-{{d.user_id}}" role="dialog" >
+     <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+          <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        <h4 class="modal-title custom_align" id="Heading">Approve as Donor</h4>
+      </div>
+         <div class="modal-body">
+		 <br>
+		 <h3 class="modal-title custom_align" id="Heading" style="margin-left:200px;color:#555">Are you sure want to approve this person as donor?</h3>
+		 <br>
+		  <form class="form-horizontal" method="post" action="{% url 'approveuser' %}">
+		    {% csrf_token %}  
+	       <input type="hidden" class="form-control"  value="{{d.user_id}}"  name="user_id"> 	 
+		 <div class="box-content">
+		  
+		<button name="edit" type="submit" class="btn btn-success" ><span class="glyphicon 
+		glyphicon-ok-sign"></span> Approve</button>
+	<button type="reset" class="btn btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+							</div>								
+      </div>
+     </form>
+	     <div class="modal-footer ">
+        </div> 
+        </div>
+    <!-- /.modal-content --> 
+  </div>
+  </div>
+	  
+	  <div class="modal fade" id="reject-{{d.user_id}}" role="dialog" >
+     <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+          <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        <h4 class="modal-title custom_align" id="Heading">Are you sure want to Reject provider</h4>
+      </div>
+         <div class="modal-body">
+		  <form class="form-horizontal" method="post" name="myForm" onsubmit="" action="{% url 'rejectuser' %}">
+        {% csrf_token %}  
+        <input type="hidden" class="form-control"  value="{{d.useremail}}"  name="user_email"> 
+		<input type="hidden" class="form-control"  value="{{d.user_id}}"  name="user_id">		 
+		 <div class="box-content">
+		 <div class="col-md-12">
+			<div class="form-group" style="margin-left:50px;">
+                          
+                          </div>
+									</div>
+									<br><br><br>
+<button name="request" type="submit" class="btn btn-danger" ><span class="glyphicon 
+		glyphicon-ok-sign"></span> Reject</button>
+	<button type="reset" class="btn btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+								</div> 
+</div>								
+      </div>
+      
+	  </form>
+	     <div class="modal-footer ">
+        
+      </div> 
+        </div>
+    <!-- /.modal-content --> 
+  </div>
+	  
+
+
+    </tr>
+    {% endfor %}
+        
+</table>
+
+</div>
+
+{% endblock %}

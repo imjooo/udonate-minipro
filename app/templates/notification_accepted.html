@@ -1,0 +1,49 @@
+{% extends "donorhead.html" %}
+{% load static %}
+{% block content %}
+           
+<div class="right_col" role="main">
+<table class="table table-responsive table-striped " width="100%" style="margin-bottom:10px;">
+    <thead class="bg-primary text-white">
+    <tr class="table-dark">
+        <th style="  color:white;" >Sl.No.</th>
+        <th style="  color:white;">Name</th>
+        
+        <th style="  color:white;" >Phone Number</th>
+        
+        <th style="  color:white;">User Email</th>
+       
+        
+    </tr>
+    </thead>
+    {% for d in data %}
+  
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{d.user.fname}} {{d.user.lname}}</td>
+      
+        <td>{{d.user.ph_no}}</td>
+        
+        <td>{{d.user.email}}</td>
+       
+        
+        
+        <td>
+            
+      <!--  -->
+      <!-- reject -->
+     
+
+          </td>
+
+
+        
+ 
+    </tr>
+    {% endfor %}
+        
+</table>
+
+</div>
+
+{% endblock %}

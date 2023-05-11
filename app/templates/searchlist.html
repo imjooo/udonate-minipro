@@ -1,0 +1,82 @@
+{% extends "userhead.html" %}
+{% load static %}
+{% block content %}
+           
+<div class="right_col" role="main">
+<table class="table table-responsive table-striped " width="100%" style="margin-bottom:10px;">
+    <thead class="bg-primary text-white">
+    <tr class="table-dark">
+        <th style="  color:white;" >Sl.No.</th>
+        <th style="  color:white;">Name</th>
+        
+        <th style="  color:white;" >Gender</th>
+        
+        <th style="  color:white;">User Blood Group</th>
+        
+        <th style="  color:white;" >District</th>
+        <th style="  color:white;">Action</th>
+    </tr>
+    </thead>
+    {% for d in data %}
+  
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{d.fname}} {{d.lname}}</td>
+      
+        <td>{{d.gender}}</td>
+        
+        <td>{{d.blood_grp}}</td>
+        
+        <td>{{d.district}}</td> 
+        
+        
+        <td>
+            <div class="btn-group">
+              <button type="button" class="btn btn-info btn-flat btn-danger" data-toggle="modal" data-target="#approve-{{d.user_id}}">Request</button>
+            </div>
+
+
+          
+      <!-- approve -->
+      <div class="modal fade" id="approve-{{d.user_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel"><h3>Request Donor</h3></h5>
+            </div>
+            <div class="modal-body">
+              <h4 class="modal-title custom_align" id="Heading" style="color:#d8727a">Are You Sure ?<br>You Need to request this donor</h4>
+              <br>
+              <form class="form-horizontal" method="post" name="myForm" onsubmit=""
+                action="{% url 'requestblood' %}">
+                {% csrf_token %}
+                <input  type="hidden" class="form-control" value="{{d.user_id}}" name="user_id">
+              <input type="text" value="{{d.blood_grp}}" name="blood_grp">
+                <div class="box-content">
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Request</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+      <!-- reject -->
+     
+
+          </td>
+
+
+        
+ 
+    </tr>
+    {% endfor %}
+        
+</table>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "adminhead.html" %}
+{% load static %}
+{% block content %}
+<div class="right_col" role="main">
+      <div class="page-title">
+        <div class="text-center">
+          <h3>HOSPITAL REGISTRATION</h3>
+        </div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class="clearfix"></div>
+           <div class="cnt text-center">
+            <form method="POST" action="{% url 'add_hospital1' %}" enctype="multipart/form-data">
+              {% csrf_token %}
+
+              <div class="row">
+                <div class="col-md-6">
+
+                  <div class="form-outline">
+                    <input type="text" id="firstName" class="form-control form-control-lg" name="hname" required />
+                    <label class="form-label" for="firstName">Name</label>
+                  </div>
+
+                </div>
+                <div class="col-md-6 ">
+
+                  <div class="form-outline">
+                    <input type="text" id="lastName" class="form-control form-control-lg" name="address" required/>
+                    <label class="form-label" for="address">Address</label>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+  
+                    <div class="form-outline">
+                      <input type="text" id="firstName" class="form-control form-control-lg" name="phone" maxlength="10" minlength="10" pattern="[0-9]{10}" required />
+                      <label class="form-label" for="Phone">Phone</label>
+                    </div>
+  
+                  </div>
+                  <div class="col-md-6 ">
+  
+                    <div class="form-outline">
+                      <input type="email" id="email" class="form-control form-control-lg" name="email" required/>
+                      <label class="form-label" for="Email">Email</label>
+                    </div>
+  
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+  
+                    <div class="form-outline">
+                      <input type="text" id="firstName" class="form-control form-control-lg" name="username" required />
+                      <label class="form-label" for="Username">User Name</label>
+                    </div>
+  
+                  </div>
+                  <div class="col-md-6 ">
+  
+                    <div class="form-outline">
+                      <input type="text" id="lastName" class="form-control form-control-lg" name="password" minlength="8" maxlength="12" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" placeholder="mix chracters and numbers" required/>
+                      <label class="form-label" for="password">Password</label>
+                    </div>
+  
+                  </div>
+                </div>
+              <input class="btn btn-Danger btn-lg fw-bold my-auto" type="submit" value="Register" />
+            </form>
+           </div>   
+           
+      </div>
+</div>
+
+{% endblock %}
